@@ -1,3 +1,7 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
 .App {
   text-align: center;
 }
@@ -9,20 +13,40 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  /* height: 150px; */
   padding: 20px;
   color: white;
+  margin-bottom: 20px;
 }
 
 .App-title {
   font-size: 1.5em;
 }
 
-.App-intro {
-  font-size: large;
-}
-
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.requestBlock{
+  display: inline-block;
+  border: 2px solid #222;
+  padding: 20px;
+}
+.requestBlock .lable{
+  text-align: left;
+  font-weight: 700;
+}
+.requestBlock .resetButton{
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+#currentStamp{
+  margin: 20px;
+  font-weight: 900;
+  text-decoration: overline;
 }
