@@ -1,5 +1,5 @@
 var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
-var open = indexedDB.open("reactSPA", 1);
+export let open = indexedDB.open("reactSPA", 1);
 open.onupgradeneeded = function() {
     var db = open.result;
     var store1 = db.createObjectStore("comments",{keyPath: "id",autoIncrement: true });

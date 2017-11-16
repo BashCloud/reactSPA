@@ -2,23 +2,22 @@ import React, { Component } from 'react';
 import Clock from 'react-live-clock';
 import logo from './logo.svg';
 import './App.css';
-import {addToDB} from './DBindexed';
+// import open from './DBindexed';
 const API = 'https://jsonplaceholder.typicode.com/';
+var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+export let open = indexedDB.open("reactSPA", 1);
+open.onupgradeneeded = function() {
+    var db = open.result;
+    db.createObjectStore("comments",{keyPath: "id",autoIncrement: true });
+    db.createObjectStore("photos",{keyPath: "id",autoIncrement: true });
+    db.createObjectStore("todos",{keyPath: "id",autoIncrement: true });
+    db.createObjectStore("posts",{keyPath: "id",autoIncrement: true });
+};
 
 function currentTime(){
   let time = new Date();
   time = time.toLocaleTimeString('en-IN', {hour12: false}) + "." + time.getMilliseconds();
   return time;
-}
-
-class RequestStamp extends React.Component{
-  render(){
-    let time = new Date()
-    return(
-      time.toLocaleTimeString('en-IN', {hour12: false}) + "." +
-      time.getMilliseconds()
-    )
-  }
 }
 
 class RequestBlock extends React.Component {
@@ -29,6 +28,16 @@ class RequestBlock extends React.Component {
         isLoading: false,
         startTime: '',
         endTime: '',
+        saveStartTime: '',
+        saveEndTime: ''
+    };
+  }
+  addToDB(query,data) {
+    var db = open.result;
+    var tx = db.transaction(query, "readwrite"); 
+    tx.objectStore(query).put(data); 
+    tx.oncomplete = function() {
+      db.close();
     };
   }
   fetchData() {
@@ -48,10 +57,11 @@ class RequestBlock extends React.Component {
         })
         .then((items) => {
           this.setState({endTime:currentTime()})
-          console.log(items);
+          this.setState({saveStartTime:currentTime()})
           items.forEach((item) => {
-            addToDB(this.props.query,item);
+            this.addToDB(this.props.query,item);
           });
+          this.setState({saveEndTime:currentTime()})
         })
         .catch(() => this.setState({ hasErrored: true }));
     }
@@ -73,11 +83,11 @@ class RequestBlock extends React.Component {
         </tr>
         <tr>
           <td className="lable"> Start Save:</td>
-          <td> <RequestStamp /> </td>
+          <td> {this.state.saveStartTime} </td>
         </tr>
         <tr>
           <td className="lable"> End Save:</td>
-          <td> <RequestStamp /> </td>
+          <td> {this.state.saveEndTime} </td>
         </tr>
         <tr><td colSpan="2">
             <div className="resetButton" onClick={this.fetchData}> Restart </div>
