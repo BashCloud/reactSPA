@@ -48,5 +48,5 @@
 #currentStamp{
   margin: 20px;
   font-weight: 900;
-  text-decoration: overline;
+  /* text-decoration: overline; */
 }

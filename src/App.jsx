@@ -1,18 +1,7 @@
 import React, { Component } from 'react';
+import Clock from 'react-live-clock';
 import logo from './logo.svg';
 import './App.css';
-
-class CurrentStamp extends React.Component{
-  render(){
-    let time = new Date()
-    return(
-      // <div id="currentStamp">
-        
-      // </div>
-      time.toISOString()
-    )
-  }
-}
 
 class RequestStamp extends React.Component{
   render(){
@@ -70,7 +59,8 @@ class App extends Component {
           <RequestBlock name="Sara" />
           <RequestBlock name="Sara" />
         <div id="currentStamp">
-          <CurrentStamp />
+          <Clock format={"dddd, MMMM Do YYYY, h:mm:ss.SSS A"}
+            ticking={true} interval={100} />
         </div>
       </div>
     );
