@@ -26,4 +26,4 @@ npm run build
 
 ### Mobile Responsive screenshot
 
-![React Application][screencapture.png]
+![React Application](screencapture.png)
