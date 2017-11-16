@@ -11,12 +11,16 @@
   height: 80px;
 }
 
-.App-header {
+.App-header, .App-footer {
   background-color: #222;
-  /* height: 150px; */
   padding: 20px;
   color: white;
+}
+.App-header{
   margin-bottom: 20px;
+}
+.App-footer{
+  margin-top: 20px;
 }
 
 .App-title {
@@ -46,19 +50,21 @@
   margin-top: 10px;
 }
 #currentStamp{
-  margin-top: 10px;
+  margin: 10px;
+  color: #aaa;
   font-weight: 900;
-  /* text-decoration: overline; */
 }
 #UNIXstamp{
   margin-top: 20px;
   font-weight: 100;
+  color: #ccc;
 }
 #UNIXstamp time{
   font-weight: 700;
   font-size: 1.5em;
+  color: #fff;
 }
 .stampInfo{
   font-size: 0.7em;
-  color: #555;
+  color: #999;
 }
