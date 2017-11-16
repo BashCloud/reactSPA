@@ -3,7 +3,12 @@ import Clock from 'react-live-clock';
 import logo from './logo.svg';
 import './App.css';
 const API = 'https://jsonplaceholder.typicode.com/';
-let DEFAULT_QUERY = 'comments';
+
+function currentTime(){
+  let time = new Date();
+  time = time.toLocaleTimeString('en-IN', {hour12: false}) + "." + time.getMilliseconds();
+  return time;
+}
 
 class RequestStamp extends React.Component{
   render(){
@@ -16,10 +21,32 @@ class RequestStamp extends React.Component{
 }
 
 class RequestBlock extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+        hasErrored: false,
+        isLoading: false,
+        startTime: '',
+        endTime: ''
+    };
+  }
+  fetchData(url) {
+    this.setState({ isLoading: true })
+    this.setState({startTime:currentTime()})
+    fetch(url)
+        .then((response) => {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            this.setState({ isLoading: false });
+            return response;
+        })
+        .then((response) => response.json())
+        .then((items) => this.setState({endTime:currentTime()})) // ES6 property value shorthand for { items: items }
+        .catch(() => this.setState({ hasErrored: true }));
+    }
   componentDidMount() {
-    fetch(API + DEFAULT_QUERY)
-      .then(response => console.log(response.json()))
-      // .then(data => this.setState({ hits: data.hits }));
+    this.fetchData(API + this.props.query);
   }
   render() {
     return (
@@ -27,11 +54,11 @@ class RequestBlock extends React.Component {
       <table><tbody>
         <tr>
           <td className="lable"> Start:</td>
-          <td> <RequestStamp /> </td>
+          <td> {this.state.startTime} </td>
         </tr>
         <tr>
           <td className="lable"> End:</td>
-          <td> <RequestStamp /> </td>
+          <td> {this.state.endTime} </td>
         </tr>
         <tr>
           <td className="lable"> Start Save:</td>
@@ -48,7 +75,6 @@ class RequestBlock extends React.Component {
         </tbody>
       </table>  
       </div>  
-      // <h1>Hello, {this.props.name}</h1>
     );
   }
 }
@@ -61,10 +87,10 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">React SPA</h1>
         </header>
-          <RequestBlock name="Sara" />
-          <RequestBlock name="Sara" />
-          <RequestBlock name="Sara" />
-          <RequestBlock name="Sara" />
+          <RequestBlock query="comments" />
+          <RequestBlock query="photos" />
+          <RequestBlock query="todos" />
+          <RequestBlock query="posts" />
         <footer className="App-footer">  
           <div id="UNIXstamp">
             Current UNIX Timestamp: 
