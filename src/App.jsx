@@ -27,13 +27,13 @@ class RequestBlock extends React.Component {
         hasErrored: false,
         isLoading: false,
         startTime: '',
-        endTime: ''
+        endTime: '',
     };
   }
-  fetchData(url) {
+  fetchData() {
     this.setState({ isLoading: true })
     this.setState({startTime:currentTime()})
-    fetch(url)
+    fetch(API + this.props.query)
         .then((response) => {
             if (!response.ok) {
                 throw Error(response.statusText);
@@ -46,11 +46,12 @@ class RequestBlock extends React.Component {
         .catch(() => this.setState({ hasErrored: true }));
     }
   componentDidMount() {
-    this.fetchData(API + this.props.query);
+    this.fetchData();
   }
   render() {
     return (
       <div className = "requestBlock">
+      <span className="apiRef">{API + this.props.query}</span>
       <table><tbody>
         <tr>
           <td className="lable"> Start:</td>
@@ -69,7 +70,7 @@ class RequestBlock extends React.Component {
           <td> <RequestStamp /> </td>
         </tr>
         <tr><td colSpan="2">
-            <div className="resetButton"> Restart </div>
+            <div className="resetButton" onClick={this.fetchData}> Restart </div>
           </td>
         </tr>
         </tbody>

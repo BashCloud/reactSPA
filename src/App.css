@@ -36,6 +36,7 @@
   display: inline-block;
   border: 2px solid #222;
   padding: 20px;
+  position: relative;
 }
 .requestBlock .lable{
   text-align: left;
@@ -67,4 +68,13 @@
 .stampInfo{
   font-size: 0.7em;
   color: #999;
+}
+.apiRef{
+  font-size: 0.54em;
+  text-align: left;
+  text-decoration: underline;
+  color: #373737;
+  position: absolute;
+  left: 22px;
+  top: 5px;
 }
