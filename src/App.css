@@ -78,3 +78,6 @@
   left: 22px;
   top: 5px;
 }
+#content{
+  min-height: 50vh;
+}

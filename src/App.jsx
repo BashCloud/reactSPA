@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Clock from 'react-live-clock';
 import logo from './logo.svg';
 import './App.css';
+import {addToDB} from './DBindexed';
 const API = 'https://jsonplaceholder.typicode.com/';
 
 function currentTime(){
@@ -41,8 +42,17 @@ class RequestBlock extends React.Component {
             this.setState({ isLoading: false });
             return response;
         })
-        .then((response) => response.json())
-        .then((items) => this.setState({endTime:currentTime()})) // ES6 property value shorthand for { items: items }
+        .then((response) => {
+          let data = response.json()
+          return data;
+        })
+        .then((items) => {
+          this.setState({endTime:currentTime()})
+          console.log(items);
+          items.forEach((item) => {
+            addToDB(this.props.query,item);
+          });
+        })
         .catch(() => this.setState({ hasErrored: true }));
     }
   componentDidMount() {
@@ -88,10 +98,12 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">React SPA</h1>
         </header>
+        <section id="content">
           <RequestBlock query="comments" />
           <RequestBlock query="photos" />
           <RequestBlock query="todos" />
           <RequestBlock query="posts" />
+        </section>
         <footer className="App-footer">  
           <div id="UNIXstamp">
             Current UNIX Timestamp: 
