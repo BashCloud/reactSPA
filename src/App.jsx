@@ -58,8 +58,14 @@ class App extends Component {
           <RequestBlock name="Sara" />
           <RequestBlock name="Sara" />
           <RequestBlock name="Sara" />
+        <div id="UNIXstamp">
+          Current UNIX Timestamp: 
+          <Clock format={"x"}
+            ticking={true} interval={100} />
+          <span className="stampInfo"> mili-seconds since 01 Jan 1970 </span>
+        </div>
         <div id="currentStamp">
-          <Clock format={"dddd, MMMM Do YYYY, h:mm:ss.SSS A"}
+          <Clock format={"dddd, Do MMMM YYYY, h:mm:ss.SSS A"}
             ticking={true} interval={100} />
         </div>
       </div>

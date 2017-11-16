@@ -46,7 +46,19 @@
   margin-top: 10px;
 }
 #currentStamp{
-  margin: 20px;
+  margin-top: 10px;
   font-weight: 900;
   /* text-decoration: overline; */
+}
+#UNIXstamp{
+  margin-top: 20px;
+  font-weight: 100;
+}
+#UNIXstamp time{
+  font-weight: 700;
+  font-size: 1.5em;
+}
+.stampInfo{
+  font-size: 0.7em;
+  color: #555;
 }
