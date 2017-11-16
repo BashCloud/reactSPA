@@ -23,3 +23,7 @@ npm run build
 
 ### DEPLOY directly on the GitHub-Pages:
 ` npm run deploy ` After successful deployment, visit: https://bashcloud.github.io/reactSPA/ for live hosted preview.
+
+### Mobile Responsive screenshot
+
+![React Application][screencapture.png]
