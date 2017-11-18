@@ -70,7 +70,7 @@
   color: #999;
 }
 .apiRef{
-  font-size: 0.54em;
+  font-size: 0.64em;
   text-align: left;
   text-decoration: underline;
   color: #373737;
@@ -80,4 +80,8 @@
 }
 #content{
   min-height: 50vh;
+}
+.requestBlock td{
+  min-width: 100px;
+  text-align: left;
 }
