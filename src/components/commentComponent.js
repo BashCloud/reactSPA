@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as postActions from '../actions/postAction';
+import * as commentActions from '../actions/commentAction';
 import { RequestBlock } from "./layout";
 
 const API = 'https://jsonplaceholder.typicode.com/';
@@ -22,7 +22,7 @@ function addToDB(query, data) {
     db.close();
   };
 }
-class Posts extends Component {
+class Comments extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -30,7 +30,7 @@ class Posts extends Component {
   }
   fetchData(thhis) {
     // console.log(thhis);
-    thhis.props.actions.postSetStartTime();
+    thhis.props.actions.commentSetStartTime();
     fetch(API + thhis.props.query)
       .then((response) => {
         if (!response.ok) {
@@ -39,17 +39,17 @@ class Posts extends Component {
         return response;
       })
       .then((response) => {
-        thhis.props.actions.postSetEndTime();
+        thhis.props.actions.commentSetEndTime();
         let data = response.json()
         //   console.log(data);
         return data;
       })
       .then((items) => {
-        thhis.props.actions.postSetSaveStartTime();
+        thhis.props.actions.commentSetSaveStartTime();
         items.forEach((item) => {
           addToDB(thhis.props.query, item);
         });
-        thhis.props.actions.postSetSaveEndTime();
+        thhis.props.actions.commentSetSaveEndTime();
       })
     // .catch(() => this.setState({ hasErrored: true }));
   }
@@ -74,15 +74,15 @@ class Posts extends Component {
 }
 function mapStateToProps(state, props) {
   return {
-    startTime: state.postSetStartTime,
-    endTime: state.postSetEndTime,
-    saveStartTime: state.postSetSaveStartTime,
-    saveEndTime: state.postSetSaveEndTime,
+    startTime: state.commentSetStartTime,
+    endTime: state.commentSetEndTime,
+    saveStartTime: state.commentSetSaveStartTime,
+    saveEndTime: state.commentSetSaveEndTime,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(postActions, dispatch)
+    actions: bindActionCreators(commentActions, dispatch)
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Posts);
+export default connect(mapStateToProps, mapDispatchToProps)(Comments);

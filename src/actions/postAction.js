@@ -3,27 +3,27 @@ function currentTime() {
     time = time.toLocaleTimeString('en-IN', { hour12: false }) + "." + time.getMilliseconds();
     return time;
 }
-export function setStartTime() { //actions are simply functions...
+export function postSetStartTime() { //actions are simply functions...
     return {
-        type: 'startFetch',
-        startTime: currentTime(),
+        type: 'postStartFetch',
+        postStartTime: currentTime(),
     }
 }
-export function setEndTime() {
+export function postSetEndTime() {
     return {
-        type: 'endFetch',
-        endTime: currentTime(),
+        type: 'postEndFetch',
+        postEndTime: currentTime(),
     }
 }
-export function setSaveStartTime() {
+export function postSetSaveStartTime() {
     return {
-        type: 'saveStartTime',
-        saveStartTime: currentTime(),
+        type: 'postSaveStartTime',
+        postSaveStartTime: currentTime(),
     }
 }
-export function setSaveEndTime() {
+export function postSetSaveEndTime() {
     return {
-        type: 'saveEndTime',
-        saveEndTime: currentTime(),
+        type: 'postSaveEndTime',
+        postSaveEndTime: currentTime(),
     }
 }

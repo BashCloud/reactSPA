@@ -1,31 +1,31 @@
-export function setStartTime(state = '', action) {
+export function postSetStartTime(state = '', action) {
     switch (action.type) {
-        case 'startFetch':
-            return action.startTime;
+        case 'postStartFetch':
+            return action.postStartTime;
         default:
             return state;
     }
 }
-export function setEndTime(state = '', action) {
+export function postSetEndTime(state = '', action) {
     switch (action.type) {
-        case 'endFetch':
-            return action.endTime;
+        case 'postEndFetch':
+            return action.postEndTime;
         default:
             return state;
     }
 }
-export function setSaveStartTime(state = '', action) {
+export function postSetSaveStartTime(state = '', action) {
     switch (action.type) {
-        case 'saveStartTime':
-            return action.saveStartTime;
+        case 'postSaveStartTime':
+            return action.postSaveStartTime;
         default:
             return state;
     }
 }
-export function setSaveEndTime(state = '', action) {
+export function postSetSaveEndTime(state = '', action) {
     switch (action.type) {
-        case 'saveEndTime':
-            return action.saveEndTime;
+        case 'postSaveEndTime':
+            return action.postSaveEndTime;
         default:
             return state;
     }

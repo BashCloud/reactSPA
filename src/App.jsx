@@ -3,6 +3,9 @@ import Clock from 'react-live-clock';
 import logo from './logo.svg';
 import './App.css';
 import Posts from "./components/postComponent";
+import Todos from "./components/todoComponent";
+import Photos from "./components/photoComponent";
+import Comments from "./components/commentComponent";
 
 class App extends Component {
   render() {
@@ -13,12 +16,14 @@ class App extends Component {
           <h1 className="App-title">React SPA</h1>
         </header>
         <section id="content">
-          {/* <RequestBlock query="comments" />
-          <RequestBlock query="photos" />
-          <RequestBlock query="todos" />
-          <RequestBlock query="posts" /> */}
+
+          <Comments query="comments" />
+          <Photos query="photos" />
+          <Todos query="todos" />
           <Posts query="posts" />
-          {/* <Posts query="posts"/> */}
+          <div className="info">
+            Page loads at: <Clock format={"dddd, Do MMMM YYYY, h:mm:ss.SSS A"} />
+          </div>
         </section>
         <footer className="App-footer">
           <div id="UNIXstamp">
