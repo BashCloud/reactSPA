@@ -1,5 +1,5 @@
 # React SPA
-A Single Page Application, build using React and React Scripts. This is an under a task, given by [CARNOT Technologies](https://www.carsense.in/).
+A Single Page Application, build using React and React Scripts.
 
 ### Setup and Installation:
 1) Clone the repository: 
